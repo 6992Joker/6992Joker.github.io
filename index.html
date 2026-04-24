@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no">
-  <title>欢迎来到剧中人的小剧本！ | INS风格</title>
+  <title>欢迎来到剧中人的小剧本！！！ | INS风格</title>
   <style>
     * {
       margin: 0;
@@ -11,14 +11,15 @@
       box-sizing: border-box;
     }
 
-body {
-  background-color: #FFFBF7;
-  font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Microsoft YaHei', '幼圆', 'YouYuan', sans-serif;
-  color: #5E4B4F;
-  min-height: 100vh;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="%23FCBEC3" stroke="%23FF6B8A" stroke-width="1"/></svg>') 12 12, auto;
-  /* 其他样式保持不变 */
-}
+    body {
+      background: linear-gradient(135deg, #FFFBF7 0%, #FFF2E9 50%, #F8F0F2 100%);
+      font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Microsoft YaHei', '幼圆', 'YouYuan', sans-serif;
+      color: #5E4B4F;
+      min-height: 100vh;
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path d="M16 28.5l-2-1.8C7.2 20.5 2.5 16.4 2.5 11.3 2.5 7.2 5.9 4 10 4c2.3 0 4.5 1.1 6 2.8C17.5 5.1 19.7 4 22 4c4.1 0 7.5 3.2 7.5 7.3 0 5.1-4.7 9.2-11.5 15.4l-2 1.8z" fill="%23FCBEC3" stroke="%23FF6B8A" stroke-width="1.5"/></svg>') 16 16, auto;
+      position: relative;
+      overflow-x: hidden;
+    }
 
     /* INS风格背景装饰 */
     .ins-background {
@@ -35,7 +36,6 @@ body {
         radial-gradient(circle at 50% 50%, rgba(255, 242, 233, 0.25) 0%, transparent 70%);
     }
 
-    /* 几何装饰线条 */
     .geometric-lines {
       position: fixed;
       top: 0;
@@ -107,6 +107,7 @@ body {
       background: linear-gradient(45deg, #FCBEC3, #CFDEE3, #FFF2E9);
       animation: avatarPulse 3s infinite ease-in-out;
       flex-shrink: 0;
+      overflow: hidden;
     }
 
     @keyframes avatarPulse {
@@ -250,38 +251,52 @@ body {
       border-color: rgba(252, 190, 195, 0.4);
     }
 
-    /* 介绍页面 */
+    /* 九宫格布局 */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
       gap: 8px;
+      aspect-ratio: 1/1;
       margin-bottom: 15px;
     }
 
     .gallery-item {
-      aspect-ratio: 1/1;
-      border-radius: 15px;
-      overflow: hidden;
       position: relative;
+      overflow: hidden;
+      border-radius: 12px;
       cursor: pointer;
       transition: all 0.3s ease;
+      background: linear-gradient(135deg, #FFF2E9, #CFDEE3);
     }
 
     .gallery-item:hover {
-      transform: scale(1.05);
+      transform: scale(1.03);
       box-shadow: 0 8px 25px rgba(252, 190, 195, 0.3);
+      z-index: 2;
+    }
+
+    .gallery-item.main-large {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      border-radius: 16px;
     }
 
     .gallery-img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      background: linear-gradient(45deg, #FFF2E9, #CFDEE3);
+      display: block;
     }
 
-    .gallery-item.main-image-item {
-      grid-column: span 2;
-      grid-row: span 2;
+    .gallery-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #FFF2E9, #CFDEE3);
     }
 
     .intro-text-card {
@@ -329,31 +344,27 @@ body {
       box-shadow: 0 12px 35px rgba(252, 190, 195, 0.2);
     }
 
-    .look-image-placeholder {
+    .look-image-container {
       width: 100%;
-      height: 200px;
+      height: 250px;
+      overflow: hidden;
+      position: relative;
       background: linear-gradient(135deg, #FFF2E9 0%, #CFDEE3 100%);
+    }
+
+    .look-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .look-placeholder {
+      width: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 3rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .look-image-placeholder::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      animation: shimmer 2s infinite;
-    }
-
-    @keyframes shimmer {
-      100% { left: 100%; }
+      font-size: 4rem;
     }
 
     .look-info {
@@ -398,13 +409,6 @@ body {
       display: flex;
       align-items: center;
       gap: 10px;
-    }
-
-    .chat-avatar {
-      width: 35px;
-      height: 35px;
-      border-radius: 50%;
-      background: white;
     }
 
     .chat-messages {
@@ -504,6 +508,7 @@ body {
       border: 1px solid rgba(207, 222, 227, 0.3);
       transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
     }
 
     .shop-item:hover {
@@ -511,11 +516,26 @@ body {
       box-shadow: 0 10px 30px rgba(252, 190, 195, 0.25);
     }
 
-    .shop-image {
+    .shop-image-container {
       width: 100%;
       aspect-ratio: 1/1;
-      object-fit: cover;
+      overflow: hidden;
       background: linear-gradient(45deg, #FFF2E9, #CFDEE3);
+    }
+
+    .shop-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .shop-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
     }
 
     .shop-info {
@@ -550,6 +570,30 @@ body {
       align-items: center;
       justify-content: center;
       backdrop-filter: blur(5px);
+      z-index: 3;
+    }
+
+    /* 图片上传按钮 */
+    .upload-overlay {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      z-index: 3;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(252, 190, 195, 0.3);
+    }
+
+    .hidden-input {
+      display: none;
     }
 
     /* 管理员按钮 */
@@ -583,10 +627,6 @@ body {
     }
 
     @media (max-width: 600px) {
-      .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      
       .shop-feed {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -598,6 +638,10 @@ body {
       .nav-btn {
         font-size: 0.75rem;
         padding: 8px 6px;
+      }
+
+      .look-image-container {
+        height: 180px;
       }
     }
   </style>
@@ -611,11 +655,11 @@ body {
     <div class="ins-header">
       <div class="profile-section">
         <div class="avatar-circle">
-          <img id="avatarImage" class="avatar-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='35' r='18' fill='%23FCBEC3'/%3E%3Ccircle cx='30' cy='30' r='2.5' fill='white'/%3E%3Ccircle cx='50' cy='30' r='2.5' fill='white'/%3E%3Cpath d='M32 45 Q40 52 48 45' stroke='white' stroke-width='2.5' fill='none'/%3E%3C/svg%3E" alt="头像">
+          <img id="avatarImage" class="avatar-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='40' cy='35' r='18' fill='%23FCBEC3'/%3E%3C/svg%3E" alt="头像">
         </div>
         <div class="profile-info">
-          <div class="username" id="displayName">💕剧中人💕</div>
-          <div class="bio" id="displayBio">世界坏，欺负我的人更坏！！！</div>
+          <div class="username" id="displayName">剧中人 🧁</div>
+          <div class="bio" id="displayBio">世界坏！欺负小剧的人更坏！</div>
           <div class="stats-row">
             <div class="stat-item">
               <div class="stat-number">1314</div>
@@ -636,29 +680,50 @@ body {
 
     <!-- 导航按钮 -->
     <div class="nav-buttons" id="navButtons">
-      <button class="nav-btn active" data-page="intro">📱 小剧的日常</button>
-      <button class="nav-btn" data-page="looks">✨ 小剧的衣橱</button>
-      <button class="nav-btn" data-page="chat">💬 跟小剧说说话吧</button>
-      <button class="nav-btn" data-page="shop">🛍️ 小剧的小卖部</button>
+      <button class="nav-btn active" data-page="intro">📱 帖子</button>
+      <button class="nav-btn" data-page="looks">✨ 妆造</button>
+      <button class="nav-btn" data-page="chat">💬 聊天</button>
+      <button class="nav-btn" data-page="shop">🛍️ 周边</button>
     </div>
 
     <!-- 页面内容 -->
     <div class="page-container">
-      <!-- 介绍页面（INS帖子风格） -->
+      <!-- 介绍页面（九宫格布局） -->
       <div class="page active" id="introPage">
         <div class="ins-card">
           <div class="gallery-grid">
-            <div class="gallery-item main-image-item">
-              <img id="mainGalleryImg" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF2E9' width='200' height='200'/%3E%3Ccircle cx='100' cy='80' r='45' fill='%23FCBEC3'/%3E%3Ccircle cx='75' cy='65' r='5' fill='white'/%3E%3Ccircle cx='125' cy='65' r='5' fill='white'/%3E%3Cpath d='M80 100 Q100 120 120 100' stroke='white' stroke-width='5' fill='none'/%3E%3Ctext x='100' y='160' text-anchor='middle' fill='%238E656F' font-size='12'%3E✨ 甜心宝贝 ✨%3C/text%3E%3C/svg%3E" alt="主图">
+            <!-- 2×2 大方块 -->
+            <div class="gallery-item main-large" id="mainImageContainer">
+              <img id="mainGalleryImg" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 400 400'%3E%3Crect fill='%23FFF2E9' width='400' height='400'/%3E%3Ccircle cx='200' cy='180' r='80' fill='%23FCBEC3'/%3E%3C/svg%3E" alt="主图">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('mainImageUpload').click()">📷</div>
+              <input type="file" id="mainImageUpload" class="hidden-input" accept="image/*" onchange="uploadImageTo('mainGalleryImg', 'avatarImage', this)">
             </div>
-            <div class="gallery-item">
-              <div class="gallery-img" style="background: linear-gradient(45deg, #FCBEC3, #FFF2E9); display: flex; align-items: center; justify-content: center; font-size: 2rem;">🌸</div>
+            
+            <!-- 5个小方块 -->
+            <div class="gallery-item" id="galleryItem1">
+              <img id="galleryImg1" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23CFDEE3' width='200' height='200'/%3E%3C/svg%3E" alt="图2">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('galleryUpload1').click()">📷</div>
+              <input type="file" id="galleryUpload1" class="hidden-input" accept="image/*" onchange="uploadImageTo('galleryImg1', null, this)">
             </div>
-            <div class="gallery-item">
-              <div class="gallery-img" style="background: linear-gradient(45deg, #CFDEE3, #FFF2E9); display: flex; align-items: center; justify-content: center; font-size: 2rem;">🦋</div>
+            <div class="gallery-item" id="galleryItem2">
+              <img id="galleryImg2" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23FFF2E9' width='200' height='200'/%3E%3C/svg%3E" alt="图3">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('galleryUpload2').click()">📷</div>
+              <input type="file" id="galleryUpload2" class="hidden-input" accept="image/*" onchange="uploadImageTo('galleryImg2', null, this)">
             </div>
-            <div class="gallery-item">
-              <div class="gallery-img" style="background: linear-gradient(45deg, #FFF2E9, #FCBEC3); display: flex; align-items: center; justify-content: center; font-size: 2rem;">💕</div>
+            <div class="gallery-item" id="galleryItem3">
+              <img id="galleryImg3" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23FCBEC3' width='200' height='200'/%3E%3C/svg%3E" alt="图4">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('galleryUpload3').click()">📷</div>
+              <input type="file" id="galleryUpload3" class="hidden-input" accept="image/*" onchange="uploadImageTo('galleryImg3', null, this)">
+            </div>
+            <div class="gallery-item" id="galleryItem4">
+              <img id="galleryImg4" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%238E656F' width='200' height='200'/%3E%3C/svg%3E" alt="图5">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('galleryUpload4').click()">📷</div>
+              <input type="file" id="galleryUpload4" class="hidden-input" accept="image/*" onchange="uploadImageTo('galleryImg4', null, this)">
+            </div>
+            <div class="gallery-item" id="galleryItem5">
+              <img id="galleryImg5" class="gallery-img" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23CFDEE3' width='200' height='200'/%3E%3C/svg%3E" alt="图6">
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('galleryUpload5').click()">📷</div>
+              <input type="file" id="galleryUpload5" class="hidden-input" accept="image/*" onchange="uploadImageTo('galleryImg5', null, this)">
             </div>
           </div>
           
@@ -671,45 +736,74 @@ body {
               剧中人是不会错的<br>
               剧中人就算再坏也只是想要爱而已<br>
               剧中人是我的小天使、小美好、小心肝<br>
-              剧中人要多少爱我都给、是无底洞我也跳 💫
+              剧中人要多少爱我都给、是无底洞我也跳💫
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 妆造页面 -->
+      <!-- 妆造页面（支持真实照片） -->
       <div class="page" id="looksPage">
         <div class="looks-feed" id="looksFeed">
           <div class="look-post">
-            <div class="look-image-placeholder">🍓</div>
+            <div class="look-image-container">
+              <img id="lookImg1" class="look-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="look-placeholder">🍓</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('lookUpload1').click()">📷</div>
+              <input type="file" id="lookUpload1" class="hidden-input" accept="image/*" onchange="uploadLookImage('lookImg1', this)">
+            </div>
             <div class="look-info">
               <span class="look-name">甜莓约会</span>
               <button class="like-btn">🤍</button>
             </div>
           </div>
+          
           <div class="look-post">
-            <div class="look-image-placeholder">🧁</div>
+            <div class="look-image-container">
+              <img id="lookImg2" class="look-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="look-placeholder">🧁</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('lookUpload2').click()">📷</div>
+              <input type="file" id="lookUpload2" class="hidden-input" accept="image/*" onchange="uploadLookImage('lookImg2', this)">
+            </div>
             <div class="look-info">
               <span class="look-name">奶霜日记</span>
               <button class="like-btn">🤍</button>
             </div>
           </div>
+          
           <div class="look-post">
-            <div class="look-image-placeholder">🍃</div>
+            <div class="look-image-container">
+              <img id="lookImg3" class="look-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="look-placeholder">🍃</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('lookUpload3').click()">📷</div>
+              <input type="file" id="lookUpload3" class="hidden-input" accept="image/*" onchange="uploadLookImage('lookImg3', this)">
+            </div>
             <div class="look-info">
               <span class="look-name">薄荷微风</span>
               <button class="like-btn">🤍</button>
             </div>
           </div>
+          
           <div class="look-post">
-            <div class="look-image-placeholder">🍑</div>
+            <div class="look-image-container">
+              <img id="lookImg4" class="look-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="look-placeholder">🍑</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('lookUpload4').click()">📷</div>
+              <input type="file" id="lookUpload4" class="hidden-input" accept="image/*" onchange="uploadLookImage('lookImg4', this)">
+            </div>
             <div class="look-info">
               <span class="look-name">蜜桃乌龙</span>
               <button class="like-btn">🤍</button>
             </div>
           </div>
+          
           <div class="look-post">
-            <div class="look-image-placeholder">🌸</div>
+            <div class="look-image-container">
+              <img id="lookImg5" class="look-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="look-placeholder">🌸</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('lookUpload5').click()">📷</div>
+              <input type="file" id="lookUpload5" class="hidden-input" accept="image/*" onchange="uploadLookImage('lookImg5', this)">
+            </div>
             <div class="look-info">
               <span class="look-name">樱花卷卷</span>
               <button class="like-btn">🤍</button>
@@ -722,8 +816,7 @@ body {
       <div class="page" id="chatPage">
         <div class="chat-container">
           <div class="chat-header">
-            <div class="chat-avatar">🧁</div>
-            <span>剧中人小姐 · 在线</span>
+            <span>💬 小奶油 · 在线</span>
           </div>
           <div class="chat-messages" id="chatMessages">
             <div class="message ai">
@@ -738,31 +831,62 @@ body {
         </div>
       </div>
 
-      <!-- 小卖部页面 -->
+      <!-- 小卖部页面（支持真实照片） -->
       <div class="page" id="shopPage">
         <div class="shop-feed" id="shopGrid">
-          <div class="shop-item" style="position: relative;">
+          <div class="shop-item">
             <button class="save-btn">♡</button>
-            <div class="shop-image" style="background: linear-gradient(45deg, #FCBEC3, #FFF2E9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🧸</div>
+            <div class="shop-image-container">
+              <img id="shopImg1" class="shop-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="shop-placeholder">🧸</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('shopUpload1').click()">📷</div>
+              <input type="file" id="shopUpload1" class="hidden-input" accept="image/*" onchange="uploadShopImage('shopImg1', this)">
+            </div>
             <div class="shop-info">
               <div class="shop-name">奶油小熊玩偶</div>
-              <div class="shop-price">¥是哥哥给的无价之宝！</div>
+              <div class="shop-price">¥128</div>
             </div>
           </div>
-          <div class="shop-item" style="position: relative;">
+          
+          <div class="shop-item">
             <button class="save-btn">♡</button>
-            <div class="shop-image" style="background: linear-gradient(45deg, #CFDEE3, #FFF2E9); display: flex; align-items: center; justify-content: center; font-size: 3rem;">📸</div>
+            <div class="shop-image-container">
+              <img id="shopImg2" class="shop-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="shop-placeholder">📸</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('shopUpload2').click()">📷</div>
+              <input type="file" id="shopUpload2" class="hidden-input" accept="image/*" onchange="uploadShopImage('shopImg2', this)">
+            </div>
             <div class="shop-info">
-              <div class="shop-name">写真明信片</div>
+              <div class="shop-name">写真明信片套装</div>
               <div class="shop-price">¥68</div>
             </div>
           </div>
-          <div class="shop-item" style="position: relative;">
+          
+          <div class="shop-item">
             <button class="save-btn">♡</button>
-            <div class="shop-image" style="background: linear-gradient(45deg, #FFF2E9, #FCBEC3); display: flex; align-items: center; justify-content: center; font-size: 3rem;">🔑</div>
+            <div class="shop-image-container">
+              <img id="shopImg3" class="shop-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="shop-placeholder">🔑</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('shopUpload3').click()">📷</div>
+              <input type="file" id="shopUpload3" class="hidden-input" accept="image/*" onchange="uploadShopImage('shopImg3', this)">
+            </div>
             <div class="shop-info">
               <div class="shop-name">甜心钥匙扣</div>
               <div class="shop-price">¥48</div>
+            </div>
+          </div>
+          
+          <div class="shop-item">
+            <button class="save-btn">♡</button>
+            <div class="shop-image-container">
+              <img id="shopImg4" class="shop-image" src="" style="display:none;" onload="this.style.display='block'; this.previousElementSibling.style.display='none'">
+              <div class="shop-placeholder">🎀</div>
+              <div class="upload-overlay admin-only-el" style="display:none;" onclick="document.getElementById('shopUpload4').click()">📷</div>
+              <input type="file" id="shopUpload4" class="hidden-input" accept="image/*" onchange="uploadShopImage('shopImg4', this)">
+            </div>
+            <div class="shop-info">
+              <div class="shop-name">蝴蝶结发饰</div>
+              <div class="shop-price">¥88</div>
             </div>
           </div>
         </div>
@@ -773,13 +897,160 @@ body {
   <!-- 管理员控制面板 -->
   <div class="admin-control" id="adminPanel">
     <button class="admin-btn" id="adminToggleBtn" title="管理员模式">🔑</button>
-    <button class="admin-btn" id="uploadImageBtn" title="更换图片" style="display: none;">📷</button>
-    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
-    <button class="admin-btn" id="editProfileBtn" title="编辑资料" style="display: none;">✏️</button>
+    <button class="admin-btn" id="editProfileBtn" title="编辑资料" style="display:none;">✏️</button>
   </div>
 
   <script>
     (function() {
+      // 管理员功能
+      let isAdmin = false;
+      const ADMIN_PASSWORD = "6992Joker";
+      
+      const adminToggleBtn = document.getElementById('adminToggleBtn');
+      const editProfileBtn = document.getElementById('editProfileBtn');
+      const adminOnlyEls = document.querySelectorAll('.admin-only-el');
+
+      if (localStorage.getItem('ins_admin') === 'true') {
+        enableAdminFeatures();
+      }
+
+      adminToggleBtn.addEventListener('click', () => {
+        if (isAdmin) {
+          disableAdminFeatures();
+          localStorage.removeItem('ins_admin');
+        } else {
+          const pass = prompt('请输入管理员密码：');
+          if (pass === ADMIN_PASSWORD) {
+            enableAdminFeatures();
+            localStorage.setItem('ins_admin', 'true');
+            alert('✨ 管理员模式已开启！现在可以点击图片上的📷按钮更换照片');
+          } else if (pass !== null) {
+            alert('密码错误 ❌');
+          }
+        }
+      });
+
+      function enableAdminFeatures() {
+        isAdmin = true;
+        editProfileBtn.style.display = 'block';
+        adminToggleBtn.textContent = '🔓';
+        adminOnlyEls.forEach(el => el.style.display = 'flex');
+      }
+
+      function disableAdminFeatures() {
+        isAdmin = false;
+        editProfileBtn.style.display = 'none';
+        adminToggleBtn.textContent = '🔑';
+        adminOnlyEls.forEach(el => el.style.display = 'none');
+      }
+
+      // 通用图片上传
+      window.uploadImageTo = function(imgId, alsoUpdateAvatarId, inputElement) {
+        if (!isAdmin) {
+          alert('请先解锁管理员模式 🔑');
+          return;
+        }
+        const file = inputElement.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            document.getElementById(imgId).src = event.target.result;
+            localStorage.setItem('img_' + imgId, event.target.result);
+            if (alsoUpdateAvatarId) {
+              document.getElementById(alsoUpdateAvatarId).src = event.target.result;
+              localStorage.setItem('img_' + alsoUpdateAvatarId, event.target.result);
+            }
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+
+      // 妆造图片上传
+      window.uploadLookImage = function(imgId, inputElement) {
+        if (!isAdmin) {
+          alert('请先解锁管理员模式 🔑');
+          return;
+        }
+        const file = inputElement.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const img = document.getElementById(imgId);
+            img.src = event.target.result;
+            img.style.display = 'block';
+            localStorage.setItem('img_' + imgId, event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+
+      // 周边图片上传
+      window.uploadShopImage = function(imgId, inputElement) {
+        if (!isAdmin) {
+          alert('请先解锁管理员模式 🔑');
+          return;
+        }
+        const file = inputElement.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const img = document.getElementById(imgId);
+            img.src = event.target.result;
+            img.style.display = 'block';
+            localStorage.setItem('img_' + imgId, event.target.result);
+          };
+          reader.readAsDataURL(file);
+        }
+      };
+
+      // 编辑资料
+      editProfileBtn.addEventListener('click', () => {
+        if (!isAdmin) return;
+        const newName = prompt('修改用户名:', document.getElementById('displayName').textContent);
+        if (newName) {
+          document.getElementById('displayName').textContent = newName;
+          localStorage.setItem('display_name', newName);
+        }
+        const newBio = prompt('修改简介:', document.getElementById('displayBio').textContent);
+        if (newBio) {
+          document.getElementById('displayBio').textContent = newBio;
+          localStorage.setItem('display_bio', newBio);
+        }
+        const newIntro = prompt('修改介绍:', document.getElementById('introDescription').innerHTML.replace(/<br>/g, '\n'));
+        if (newIntro) {
+          document.getElementById('introDescription').innerHTML = newIntro.replace(/\n/g, '<br>');
+          localStorage.setItem('intro_desc', newIntro);
+        }
+      });
+
+      // 加载存储的图片
+      function loadStoredImages() {
+        const allImgIds = [
+          'mainGalleryImg', 'avatarImage', 'galleryImg1', 'galleryImg2', 'galleryImg3', 'galleryImg4', 'galleryImg5',
+          'lookImg1', 'lookImg2', 'lookImg3', 'lookImg4', 'lookImg5',
+          'shopImg1', 'shopImg2', 'shopImg3', 'shopImg4'
+        ];
+        
+        allImgIds.forEach(id => {
+          const savedImg = localStorage.getItem('img_' + id);
+          if (savedImg) {
+            const img = document.getElementById(id);
+            if (img) {
+              img.src = savedImg;
+              img.style.display = 'block';
+            }
+          }
+        });
+
+        const savedName = localStorage.getItem('display_name');
+        if (savedName) document.getElementById('displayName').textContent = savedName;
+        
+        const savedBio = localStorage.getItem('display_bio');
+        if (savedBio) document.getElementById('displayBio').textContent = savedBio;
+        
+        const savedIntro = localStorage.getItem('intro_desc');
+        if (savedIntro) document.getElementById('introDescription').innerHTML = savedIntro.replace(/\n/g, '<br>');
+      }
 
       // 页面切换
       const navButtons = document.querySelectorAll('.nav-btn');
@@ -816,7 +1087,8 @@ body {
 
       // 收藏按钮
       document.querySelectorAll('.save-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
+        btn.addEventListener('click', function(e) {
+          e.stopPropagation();
           if (this.textContent === '♡') {
             this.textContent = '♥';
           } else {
@@ -825,110 +1097,15 @@ body {
         });
       });
 
-      // 管理员功能
-      let isAdmin = false;
-      const ADMIN_PASSWORD = "6992Joker";
-      
-      const adminToggleBtn = document.getElementById('adminToggleBtn');
-      const uploadImageBtn = document.getElementById('uploadImageBtn');
-      const editProfileBtn = document.getElementById('editProfileBtn');
-      const imageUpload = document.getElementById('imageUpload');
-
-      if (localStorage.getItem('ins_admin') === 'true') {
-        enableAdminFeatures();
-      }
-
-      adminToggleBtn.addEventListener('click', () => {
-        if (isAdmin) {
-          disableAdminFeatures();
-          localStorage.removeItem('ins_admin');
-        } else {
-          const pass = prompt('请输入管理员密码：');
-          if (pass === ADMIN_PASSWORD) {
-            enableAdminFeatures();
-            localStorage.setItem('ins_admin', 'true');
-            alert('✨ 管理员模式已开启');
-          } else if (pass !== null) {
-            alert('密码错误 ❌');
-          }
-        }
-      });
-
-      function enableAdminFeatures() {
-        isAdmin = true;
-        uploadImageBtn.style.display = 'block';
-        editProfileBtn.style.display = 'block';
-        adminToggleBtn.textContent = '🔓';
-      }
-
-      function disableAdminFeatures() {
-        isAdmin = false;
-        uploadImageBtn.style.display = 'none';
-        editProfileBtn.style.display = 'none';
-        adminToggleBtn.textContent = '🔑';
-      }
-
-      uploadImageBtn.addEventListener('click', () => {
-        imageUpload.click();
-      });
-
-      imageUpload.addEventListener('change', (e) => {
-        if (!isAdmin) return;
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = (event) => {
-            document.getElementById('mainGalleryImg').src = event.target.result;
-            document.getElementById('avatarImage').src = event.target.result;
-            localStorage.setItem('profile_image', event.target.result);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-
-      editProfileBtn.addEventListener('click', () => {
-        if (!isAdmin) return;
-        const newName = prompt('修改用户名:', document.getElementById('displayName').textContent);
-        if (newName) {
-          document.getElementById('displayName').textContent = newName;
-          localStorage.setItem('display_name', newName);
-        }
-        const newBio = prompt('修改简介:', document.getElementById('displayBio').textContent);
-        if (newBio) {
-          document.getElementById('displayBio').textContent = newBio;
-          localStorage.setItem('display_bio', newBio);
-        }
-        const newIntro = prompt('修改介绍:', document.getElementById('introDescription').innerHTML.replace(/<br>/g, '\n'));
-        if (newIntro) {
-          document.getElementById('introDescription').innerHTML = newIntro.replace(/\n/g, '<br>');
-          localStorage.setItem('intro_desc', newIntro);
-        }
-      });
-
-      // 加载存储
-      function loadStoredData() {
-        const savedImage = localStorage.getItem('profile_image');
-        if (savedImage) {
-          document.getElementById('mainGalleryImg').src = savedImage;
-          document.getElementById('avatarImage').src = savedImage;
-        }
-        const savedName = localStorage.getItem('display_name');
-        if (savedName) document.getElementById('displayName').textContent = savedName;
-        const savedBio = localStorage.getItem('display_bio');
-        if (savedBio) document.getElementById('displayBio').textContent = savedBio;
-        const savedIntro = localStorage.getItem('intro_desc');
-        if (savedIntro) document.getElementById('introDescription').innerHTML = savedIntro.replace(/\n/g, '<br>');
-      }
-
       // DeepSeek API 聊天
       const chatMessages = document.getElementById('chatMessages');
       const userInput = document.getElementById('userInput');
       const sendBtn = document.getElementById('sendBtn');
 
-      const DEEPSEEK_API_KEY = "sk-74b087b3bf074a8dab3f97cbaf536a89";
+      const DEEPSEEK_API_KEY = "sk-74b087b3bf074a8dab3f97cbaf536a89"; // 请替换为真实密钥
       const API_URL = "https://api.deepseek.com/chat/completions";
       
-      const SYSTEM_PROMPT = "你是「剧中人」，一个甜美可爱的虚拟偶像。说话温柔、带语气词“呀”“呢”“哦”，喜欢用颜文字和💕🍰🌸。回答要像贴心朋友，保持可爱治愈风格。用户是你粉丝，请用中文回复，每次回复不超过80字。";
+      const SYSTEM_PROMPT = "你是「小奶油」，一个甜美可爱的虚拟偶像。说话温柔、带语气词"呀""呢""哦"，喜欢用颜文字和💕🍰🌸。回答要像贴心朋友，保持可爱治愈风格。用户是你粉丝，请用中文回复，每次回复不超过80字。";
 
       function getCurrentTime() {
         const now = new Date();
@@ -1001,7 +1178,7 @@ body {
       });
 
       // 初始化
-      loadStoredData();
+      loadStoredImages();
       
       window.addEventListener('load', () => {
         if (localStorage.getItem('ins_admin') === 'true') {
