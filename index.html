@@ -615,7 +615,6 @@
 <body>
   <div class="ins-background"></div>
   <div class="geometric-lines"></div>
-  <div class="cursor-glow" id="cursorGlow"></div>
 
   <div class="main-container">
     <!-- INS风格头部 -->
@@ -791,14 +790,6 @@
 
   <script>
     (function() {
-      // 光标效果
-      const glow = document.getElementById('cursorGlow');
-      document.addEventListener('mousemove', (e) => {
-        glow.style.left = e.clientX + 'px';
-        glow.style.top = e.clientY + 'px';
-        glow.style.opacity = 1;
-      });
-      document.addEventListener('mouseleave', () => { glow.style.opacity = 0; });
 
       // 页面切换
       const navButtons = document.querySelectorAll('.nav-btn');
