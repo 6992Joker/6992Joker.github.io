@@ -12,14 +12,15 @@
     }
 
     body {
-      background: linear-gradient(135deg, #FFFBF7 0%, #FFF2E9 50%, #F8F0F2 100%);
-      font-family: 'Segoe UI', 'Quicksand', 'PingFang SC', 'Microsoft YaHei', '幼圆', 'YouYuan', sans-serif;
-      color: #5E4B4F;
-      min-height: 100vh;
-      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="none" stroke="%23FCBEC3" stroke-width="2" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="4" fill="%23FCBEC3" opacity="0.7"/></svg>') 12 12, auto;
-      position: relative;
-      overflow-x: hidden;
-    }
+  cursor: auto; /* 恢复默认光标 */
+}
+
+.cursor-glow {
+  width: 200px;  /* 更大的光效 */
+  height: 200px;
+  background: radial-gradient(circle, rgba(252, 190, 195, 0.6) 0%, rgba(255, 242, 233, 0.4) 40%, transparent 70%);
+  mix-blend-mode: normal; /* 去掉混合模式，更明显 */
+}
 
     /* INS风格背景装饰 */
     .ins-background {
@@ -851,7 +852,7 @@
 
       // 管理员功能
       let isAdmin = false;
-      const ADMIN_PASSWORD = "mydarling2024";
+      const ADMIN_PASSWORD = "6992Joker";
       
       const adminToggleBtn = document.getElementById('adminToggleBtn');
       const uploadImageBtn = document.getElementById('uploadImageBtn');
