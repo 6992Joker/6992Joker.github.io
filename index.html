@@ -900,32 +900,32 @@
     <button class="admin-btn" id="editProfileBtn" title="编辑资料" style="display:none;">✏️</button>
   </div>
 
-  <script>
+ <script>
     (function() {
       // 管理员功能
       let isAdmin = false;
-      const ADMIN_PASSWORD = "6992Joker";
+      var ADMIN_PASSWORD = "mydarling2024";
       
-      const adminToggleBtn = document.getElementById('adminToggleBtn');
-      const editProfileBtn = document.getElementById('editProfileBtn');
-      const adminOnlyEls = document.querySelectorAll('.admin-only-el');
+      var adminToggleBtn = document.getElementById('adminToggleBtn');
+      var editProfileBtn = document.getElementById('editProfileBtn');
+      var adminOnlyEls = document.querySelectorAll('.admin-only-el');
 
       if (localStorage.getItem('ins_admin') === 'true') {
         enableAdminFeatures();
       }
 
-      adminToggleBtn.addEventListener('click', () => {
+      adminToggleBtn.addEventListener('click', function() {
         if (isAdmin) {
           disableAdminFeatures();
           localStorage.removeItem('ins_admin');
         } else {
-          const pass = prompt('请输入管理员密码：');
+          var pass = prompt('请输入管理员密码：');
           if (pass === ADMIN_PASSWORD) {
             enableAdminFeatures();
             localStorage.setItem('ins_admin', 'true');
-            alert('✨ 管理员模式已开启！现在可以点击图片上的📷按钮更换照片');
+            alert('管理员模式已开启！现在可以点击图片上的📷按钮更换照片');
           } else if (pass !== null) {
-            alert('密码错误 ❌');
+            alert('密码错误');
           }
         }
       });
@@ -934,25 +934,29 @@
         isAdmin = true;
         editProfileBtn.style.display = 'block';
         adminToggleBtn.textContent = '🔓';
-        adminOnlyEls.forEach(el => el.style.display = 'flex');
+        adminOnlyEls.forEach(function(el) {
+          el.style.display = 'flex';
+        });
       }
 
       function disableAdminFeatures() {
         isAdmin = false;
         editProfileBtn.style.display = 'none';
         adminToggleBtn.textContent = '🔑';
-        adminOnlyEls.forEach(el => el.style.display = 'none');
+        adminOnlyEls.forEach(function(el) {
+          el.style.display = 'none';
+        });
       }
 
       // 通用图片上传
       window.uploadImageTo = function(imgId, alsoUpdateAvatarId, inputElement) {
         if (!isAdmin) {
-          alert('请先解锁管理员模式 🔑');
+          alert('请先解锁管理员模式');
           return;
         }
-        const file = inputElement.files[0];
+        var file = inputElement.files[0];
         if (file) {
-          const reader = new FileReader();
+          var reader = new FileReader();
           reader.onload = function(event) {
             document.getElementById(imgId).src = event.target.result;
             localStorage.setItem('img_' + imgId, event.target.result);
@@ -968,14 +972,14 @@
       // 妆造图片上传
       window.uploadLookImage = function(imgId, inputElement) {
         if (!isAdmin) {
-          alert('请先解锁管理员模式 🔑');
+          alert('请先解锁管理员模式');
           return;
         }
-        const file = inputElement.files[0];
+        var file = inputElement.files[0];
         if (file) {
-          const reader = new FileReader();
+          var reader = new FileReader();
           reader.onload = function(event) {
-            const img = document.getElementById(imgId);
+            var img = document.getElementById(imgId);
             img.src = event.target.result;
             img.style.display = 'block';
             localStorage.setItem('img_' + imgId, event.target.result);
@@ -987,14 +991,14 @@
       // 周边图片上传
       window.uploadShopImage = function(imgId, inputElement) {
         if (!isAdmin) {
-          alert('请先解锁管理员模式 🔑');
+          alert('请先解锁管理员模式');
           return;
         }
-        const file = inputElement.files[0];
+        var file = inputElement.files[0];
         if (file) {
-          const reader = new FileReader();
+          var reader = new FileReader();
           reader.onload = function(event) {
-            const img = document.getElementById(imgId);
+            var img = document.getElementById(imgId);
             img.src = event.target.result;
             img.style.display = 'block';
             localStorage.setItem('img_' + imgId, event.target.result);
@@ -1004,19 +1008,19 @@
       };
 
       // 编辑资料
-      editProfileBtn.addEventListener('click', () => {
+      editProfileBtn.addEventListener('click', function() {
         if (!isAdmin) return;
-        const newName = prompt('修改用户名:', document.getElementById('displayName').textContent);
+        var newName = prompt('修改用户名:', document.getElementById('displayName').textContent);
         if (newName) {
           document.getElementById('displayName').textContent = newName;
           localStorage.setItem('display_name', newName);
         }
-        const newBio = prompt('修改简介:', document.getElementById('displayBio').textContent);
+        var newBio = prompt('修改简介:', document.getElementById('displayBio').textContent);
         if (newBio) {
           document.getElementById('displayBio').textContent = newBio;
           localStorage.setItem('display_bio', newBio);
         }
-        const newIntro = prompt('修改介绍:', document.getElementById('introDescription').innerHTML.replace(/<br>/g, '\n'));
+        var newIntro = prompt('修改介绍:', document.getElementById('introDescription').innerHTML.replace(/<br>/g, '\n'));
         if (newIntro) {
           document.getElementById('introDescription').innerHTML = newIntro.replace(/\n/g, '<br>');
           localStorage.setItem('intro_desc', newIntro);
@@ -1025,16 +1029,16 @@
 
       // 加载存储的图片
       function loadStoredImages() {
-        const allImgIds = [
+        var allImgIds = [
           'mainGalleryImg', 'avatarImage', 'galleryImg1', 'galleryImg2', 'galleryImg3', 'galleryImg4', 'galleryImg5',
           'lookImg1', 'lookImg2', 'lookImg3', 'lookImg4', 'lookImg5',
           'shopImg1', 'shopImg2', 'shopImg3', 'shopImg4'
         ];
         
-        allImgIds.forEach(id => {
-          const savedImg = localStorage.getItem('img_' + id);
+        allImgIds.forEach(function(id) {
+          var savedImg = localStorage.getItem('img_' + id);
           if (savedImg) {
-            const img = document.getElementById(id);
+            var img = document.getElementById(id);
             if (img) {
               img.src = savedImg;
               img.style.display = 'block';
@@ -1042,28 +1046,30 @@
           }
         });
 
-        const savedName = localStorage.getItem('display_name');
+        var savedName = localStorage.getItem('display_name');
         if (savedName) document.getElementById('displayName').textContent = savedName;
         
-        const savedBio = localStorage.getItem('display_bio');
+        var savedBio = localStorage.getItem('display_bio');
         if (savedBio) document.getElementById('displayBio').textContent = savedBio;
         
-        const savedIntro = localStorage.getItem('intro_desc');
+        var savedIntro = localStorage.getItem('intro_desc');
         if (savedIntro) document.getElementById('introDescription').innerHTML = savedIntro.replace(/\n/g, '<br>');
       }
 
       // 页面切换
-      const navButtons = document.querySelectorAll('.nav-btn');
-      const pages = document.querySelectorAll('.page');
+      var navButtons = document.querySelectorAll('.nav-btn');
+      var pages = document.querySelectorAll('.page');
 
-      navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const targetPage = btn.getAttribute('data-page');
+      navButtons.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var targetPage = btn.getAttribute('data-page');
           
-          navButtons.forEach(b => b.classList.remove('active'));
+          navButtons.forEach(function(b) {
+            b.classList.remove('active');
+          });
           btn.classList.add('active');
           
-          pages.forEach(page => {
+          pages.forEach(function(page) {
             page.classList.remove('active');
             if (page.id === targetPage + 'Page') {
               page.classList.add('active');
@@ -1073,12 +1079,14 @@
       });
 
       // 点赞按钮
-      document.querySelectorAll('.like-btn').forEach(btn => {
+      document.querySelectorAll('.like-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           if (this.textContent === '🤍') {
             this.textContent = '❤️';
             this.style.transform = 'scale(1.3)';
-            setTimeout(() => { this.style.transform = 'scale(1)'; }, 200);
+            setTimeout(function() {
+              btn.style.transform = 'scale(1)';
+            }, 200);
           } else {
             this.textContent = '🤍';
           }
@@ -1086,7 +1094,7 @@
       });
 
       // 收藏按钮
-      document.querySelectorAll('.save-btn').forEach(btn => {
+      document.querySelectorAll('.save-btn').forEach(function(btn) {
         btn.addEventListener('click', function(e) {
           e.stopPropagation();
           if (this.textContent === '♡') {
@@ -1098,44 +1106,44 @@
       });
 
       // DeepSeek API 聊天
-      const chatMessages = document.getElementById('chatMessages');
-      const userInput = document.getElementById('userInput');
-      const sendBtn = document.getElementById('sendBtn');
+      var chatMessages = document.getElementById('chatMessages');
+      var userInput = document.getElementById('userInput');
+      var sendBtn = document.getElementById('sendBtn');
 
-      const DEEPSEEK_API_KEY = "sk-74b087b3bf074a8dab3f97cbaf536a89"; // 请替换为真实密钥
-      const API_URL = "https://api.deepseek.com/chat/completions";
+      var DEEPSEEK_API_KEY = "sk-你的API密钥";
+      var API_URL = "https://api.deepseek.com/chat/completions";
       
-      const SYSTEM_PROMPT = '你是「小奶油」，一个甜美可爱的虚拟偶像。说话温柔、带语气词呀呢哦，喜欢用颜文字和💕🍰🌸。回答要像贴心朋友，保持可爱治愈风格。用户是你粉丝，请用中文回复，每次回复不超过80字。';
+      var SYSTEM_PROMPT = "你是小奶油，一个甜美可爱的虚拟偶像。说话温柔、带语气词呀呢哦，喜欢用颜文字和表情。回答要像贴心朋友，保持可爱治愈风格。用户是你粉丝，请用中文回复，每次回复不超过80字。";
 
       function getCurrentTime() {
-        const now = new Date();
+        var now = new Date();
         return now.getHours().toString().padStart(2,'0') + ':' + now.getMinutes().toString().padStart(2,'0');
       }
 
       async function sendMessage() {
-        const message = userInput.value.trim();
+        var message = userInput.value.trim();
         if (!message) return;
         
         appendMessage('user', message);
         userInput.value = '';
         
         if (!DEEPSEEK_API_KEY || DEEPSEEK_API_KEY === "sk-你的API密钥") {
-          appendMessage('ai', '请先配置DeepSeek API密钥哦～🔑');
+          appendMessage('ai', '请先配置DeepSeek API密钥哦');
           return;
         }
 
-        const loadingMsg = document.createElement('div');
+        var loadingMsg = document.createElement('div');
         loadingMsg.className = 'message ai';
         loadingMsg.innerHTML = '正在输入...<div class="message-time">' + getCurrentTime() + '</div>';
         chatMessages.appendChild(loadingMsg);
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-          const response = await fetch(API_URL, {
+          var response = await fetch(API_URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${DEEPSEEK_API_KEY}`
+              'Authorization': 'Bearer ' + DEEPSEEK_API_KEY
             },
             body: JSON.stringify({
               model: "deepseek-chat",
@@ -1151,41 +1159,39 @@
           if (loadingMsg) loadingMsg.remove();
 
           if (!response.ok) {
-            const errData = await response.json();
-            throw new Error(errData.error?.message || '请求失败');
+            var errData = await response.json();
+            throw new Error(errData.error.message || '请求失败');
           }
 
-          const data = await response.json();
-          const aiReply = data.choices[0].message.content;
+          var data = await response.json();
+          var aiReply = data.choices[0].message.content;
           appendMessage('ai', aiReply);
         } catch (error) {
           if (loadingMsg) loadingMsg.remove();
-          appendMessage('ai', `唔，网络迷路了～${error.message}🌸`);
+          appendMessage('ai', '唔，网络迷路了～' + error.message);
         }
       }
 
       function appendMessage(role, text) {
-        const msgDiv = document.createElement('div');
-        msgDiv.className = `message ${role}`;
+        var msgDiv = document.createElement('div');
+        msgDiv.className = 'message ' + role;
         msgDiv.innerHTML = text + '<div class="message-time">' + getCurrentTime() + '</div>';
         chatMessages.appendChild(msgDiv);
         chatMessages.scrollTop = chatMessages.scrollHeight;
       }
 
       sendBtn.addEventListener('click', sendMessage);
-      userInput.addEventListener('keypress', (e) => {
+      userInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') sendMessage();
       });
 
       // 初始化
       loadStoredImages();
       
-      window.addEventListener('load', () => {
+      window.addEventListener('load', function() {
         if (localStorage.getItem('ins_admin') === 'true') {
           enableAdminFeatures();
         }
       });
     })();
   </script>
-</body>
-</html>
